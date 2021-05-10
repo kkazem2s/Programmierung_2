@@ -1,3 +1,5 @@
+package uebungsaufgaben.uebung03;
+
 import uebungsaufgaben.uebung00.Fifo;
 
 public class Timetest {

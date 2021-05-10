@@ -1,4 +1,4 @@
-package verketteteListen;
+package uebungsaufgaben.uebung03;
 
 public class EVL<T> {
     Node head;

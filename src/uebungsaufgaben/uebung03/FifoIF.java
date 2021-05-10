@@ -1,4 +1,4 @@
-package verketteteListen;
+package uebungsaufgaben.uebung03;
 
 public interface FifoIF<T> {
     void push(T e);

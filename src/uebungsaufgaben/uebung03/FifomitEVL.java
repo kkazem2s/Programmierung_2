@@ -1,7 +1,7 @@
-package verketteteListen;
+package uebungsaufgaben.uebung03;
 
 public class FifomitEVL<T> implements FifoIF<T> {
-    private EVL<T> fifo;
+    private verketteteListen.EVL<T> fifo;
 
     public FifomitEVL() {
         fifo = new EVL<>();

@@ -1,4 +1,4 @@
-package verketteteListen;
+package uebungsaufgaben.uebung04.zusatz;
 
 public class Teilbar {
     public static int teilbar(int n) {

@@ -1,4 +1,4 @@
-package verketteteListen;
+package uebungsaufgaben.uebung03.zusatz;
 
 public class Josephus {
     public static int loese(int n, int k) {
@@ -6,7 +6,7 @@ public class Josephus {
         for (int i = 0; i < n; i++) {
             josephus.add(i+2);
         }
-        while(josephus.size >= 1) {
+        while(josephus.size() >= 1) {
             josephus.next(k);
             josephus.remove();
         }
