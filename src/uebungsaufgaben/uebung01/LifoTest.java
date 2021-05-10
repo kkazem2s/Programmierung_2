@@ -8,8 +8,8 @@ import uebungsaufgaben.uebung00.Lifo;
 
 public class LifoTest {
     public static Lifo<Integer> lifo;
-    public static Lifo<Integer> lifonegative;
-    public static Lifo<String> lifostring;
+    public static Lifo<Integer> lifoNegative;
+    public static Lifo<String> lifoString;
 
     @BeforeEach
     public void createFifo() {
@@ -18,17 +18,17 @@ public class LifoTest {
     @Test
     @Order(1)
     public void sizeTest() {
-        Assertions.assertEquals(5,lifo.size());
+        Assertions.assertEquals(5,lifo.capacity());
     }
     @Test
     @Order(2)
     public void pushTest() {
         lifo.push(1);
-        Assertions.assertEquals(1,lifo.capacity());
+        Assertions.assertEquals(1,lifo.size());
         lifo.push(2);
-        Assertions.assertEquals(2,lifo.capacity());
+        Assertions.assertEquals(2,lifo.size());
         lifo.push(3);
-        Assertions.assertEquals(3,lifo.capacity());
+        Assertions.assertEquals(3,lifo.size());
     }
     @Test
     @Order(3)
@@ -53,16 +53,16 @@ public class LifoTest {
     @Test
     @Order(5)
     public void negativeTest() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> lifonegative = new Lifo<>(-1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> lifoNegative = new Lifo<>(-1));
     }
 
     @Test
     @Order(6)
     public void stringTest() {
-        lifostring = new Lifo<>(5);
-        lifostring.push("Hello");
-        lifostring.push("World");
-        Assertions.assertEquals(2,lifostring.capacity());
-        Assertions.assertEquals("World",lifostring.pop());
+        lifoString = new Lifo<>(5);
+        lifoString.push("Hello");
+        lifoString.push("World");
+        Assertions.assertEquals(2,lifoString.size());
+        Assertions.assertEquals("World",lifoString.pop());
     }
 }

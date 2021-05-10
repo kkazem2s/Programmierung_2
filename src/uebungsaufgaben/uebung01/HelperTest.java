@@ -8,14 +8,14 @@ import uebungsaufgaben.uebung00.Helper;
 import uebungsaufgaben.uebung00.Lifo;
 
 public class HelperTest {
-    public static Fifo fifo;
-    public static Lifo lifo;
+    public static Fifo<Integer> fifo;
+    public static Lifo<Integer> lifo;
     public static Helper helper;
 
     @BeforeEach
     public void createADT() {
-        fifo = new Fifo(5);
-        lifo = new Lifo(5);
+        fifo = new Fifo<>(5);
+        lifo = new Lifo<>(5);
         helper = new Helper();
     }
 

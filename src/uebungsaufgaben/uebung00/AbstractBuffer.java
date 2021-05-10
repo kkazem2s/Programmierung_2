@@ -25,10 +25,11 @@ public abstract class AbstractBuffer<T> implements Buffer<T> {
         array[size++] = i;
     }
     public int size() {
-        return array.length;
+        return size;
+
     }
     public int capacity() {
-        return size;
+        return array.length;
     }
     public String toString() {
         return "Capacity: " + this.capacity() + "\tSize: " + this.size();

@@ -6,8 +6,8 @@ import uebungsaufgaben.uebung00.Lifo;
 
 public class FifoTest {
     public static Fifo<Integer> fifo;
-    public static Fifo<Integer> fifonegative;
-    public static Lifo<String> fifostring;
+    public static Fifo<Integer> fifoNegative;
+    public static Lifo<String> fifoString;
 
     @BeforeEach
     public void createFifo() {
@@ -16,17 +16,17 @@ public class FifoTest {
     @Test
     @Order(1)
     public void sizeTest() {
-        Assertions.assertEquals(5,fifo.size());
+        Assertions.assertEquals(5,fifo.capacity());
     }
     @Test
     @Order(2)
     public void pushTest() {
         fifo.push(1);
-        Assertions.assertEquals(1,fifo.capacity());
+        Assertions.assertEquals(1,fifo.size());
         fifo.push(2);
-        Assertions.assertEquals(2,fifo.capacity());
+        Assertions.assertEquals(2,fifo.size());
         fifo.push(3);
-        Assertions.assertEquals(3,fifo.capacity());
+        Assertions.assertEquals(3,fifo.size());
     }
 
     @Test
@@ -52,16 +52,16 @@ public class FifoTest {
     @Test
     @Order(5)
     public void negativeTest() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> fifonegative = new Fifo<>(-1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> fifoNegative = new Fifo<>(-1));
     }
 
     @Test
     @Order(6)
     public void stringTest() {
-        fifostring = new Lifo<>(5);
-        fifostring.push("Hello");
-        fifostring.push("World");
-        Assertions.assertEquals(2,fifostring.capacity());
-        Assertions.assertEquals("World",fifostring.pop());
+        fifoString = new Lifo<>(5);
+        fifoString.push("Hello");
+        fifoString.push("World");
+        Assertions.assertEquals(2,fifoString.size());
+        Assertions.assertEquals("World",fifoString.pop());
     }
 }
