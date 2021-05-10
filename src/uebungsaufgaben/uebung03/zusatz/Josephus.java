@@ -1,5 +1,7 @@
 package uebungsaufgaben.uebung03.zusatz;
 
+import uebungsaufgaben.uebung03.RDVL;
+
 public class Josephus {
     public static int loese(int n, int k) {
         RDVL<Integer> josephus = new RDVL<>();
