@@ -9,7 +9,7 @@ public class JosephusTest {
     @Test
     public void loeseTest() {
         // Known solutions to the problem
-        Assertions.assertEquals(loese(41,3),31);
-        Assertions.assertEquals(loese(5,2),2);
+        Assertions.assertEquals(31, loese(41,3));
+        Assertions.assertEquals(2,loese(5,2));
     }
 }

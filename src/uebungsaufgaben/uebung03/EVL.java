@@ -1,9 +1,9 @@
 package uebungsaufgaben.uebung03;
 
 public class EVL<T> {
-    Node head;
-    Node last;
-    int size = 0;
+    private Node head;
+    private Node last;
+    private int size = 0;
 
     private class Node {
         T data;
@@ -75,6 +75,7 @@ public class EVL<T> {
         }
         n.next = tmp.next;
         tmp.next = n;
+        size++;
     }
     public T remove(int pos) {
         Node tmp = head;
@@ -94,13 +95,11 @@ public class EVL<T> {
             }
             tmp = tmp.next;
         }
-        return false;
+        return tmp.data.equals(e);
     }
-
     public int size() {
         return size;
     }
-
     public String toString() {
         String erg = "[";
         Node tmp = head;
@@ -111,7 +110,6 @@ public class EVL<T> {
         erg += tmp.data + "]";
         return erg;
     }
-
     public EVL<T> zip(EVL<T> other) {
         EVL<T> zipped = new EVL<>();
         Node thisPointer = this.head;

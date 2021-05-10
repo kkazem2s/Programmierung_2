@@ -9,7 +9,7 @@ public class TeilbarTest {
 
     @Test
     public void teilbarTest() {
-        Assertions.assertEquals(teilbar(10),2520);
-        Assertions.assertEquals(teilbar(20),232792560);
+        Assertions.assertEquals(2520,teilbar(10));
+        Assertions.assertEquals(232792560,teilbar(20));
     }
 }

@@ -2,7 +2,6 @@ package uebungsaufgaben.uebung02;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 public class PaarTest {
@@ -15,28 +14,24 @@ public class PaarTest {
         integerIntegerPaar = new Paar<>(19,98);
     }
 
-    @Order(1)
     @Test
     public void getTest() {
-        Assertions.assertEquals(integerStringPaar.getErstes(), 1);
-        Assertions.assertEquals(integerStringPaar.getZweites(), "Aufgabe");
+        Assertions.assertEquals(1, integerStringPaar.getErstes());
+        Assertions.assertEquals("Aufgabe",integerStringPaar.getZweites());
     }
 
-    @Order(2)
     @Test
     public void setTest() {
         integerIntegerPaar.setBeide(20,21);
-        Assertions.assertEquals(integerIntegerPaar.getErstes(), 20);
-        Assertions.assertEquals(integerIntegerPaar.getZweites(), 21);
+        Assertions.assertEquals(20, integerIntegerPaar.getErstes());
+        Assertions.assertEquals(21, integerIntegerPaar.getZweites());
     }
 
-    @Order(3)
     @Test
     public void equalsTest() {
         Assertions.assertTrue(new Paar<>(1,"Aufgabe").equals(integerStringPaar));
     }
 
-    @Order(4)
     @Test
     public void toStringTest() {
         Assertions.assertEquals("(1,Aufgabe)", integerStringPaar.toString());
