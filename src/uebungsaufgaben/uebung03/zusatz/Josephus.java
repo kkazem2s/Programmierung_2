@@ -14,8 +14,4 @@ public class Josephus {
         }
         return josephus.element();
     }
-    public static void main(String [] args) {
-        System.out.println(loese(41,3));
-        System.out.println(loese(5,2));
-    }
 }

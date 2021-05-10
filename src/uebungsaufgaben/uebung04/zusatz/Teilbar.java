@@ -20,7 +20,4 @@ public class Teilbar {
         }
         return erg;
     }
-    public static void main(String [] args) {
-        System.out.println(teilbar(20));
-    }
 }
