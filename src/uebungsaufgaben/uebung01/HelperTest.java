@@ -10,13 +10,11 @@ import uebungsaufgaben.uebung00.Lifo;
 public class HelperTest {
     public static Fifo<Integer> fifo;
     public static Lifo<Integer> lifo;
-    public static Helper helper;
 
     @BeforeEach
     public void createADT() {
         fifo = new Fifo<>(5);
         lifo = new Lifo<>(5);
-        helper = new Helper();
     }
 
     @Test
@@ -26,7 +24,7 @@ public class HelperTest {
         fifo.push(3);
         fifo.push(4);
         fifo.push(5);
-        helper.move(fifo,lifo);
+        Helper.move(fifo,lifo);
 
         Assertions.assertEquals(5,lifo.pop());
         Assertions.assertEquals(4,lifo.pop());
@@ -42,7 +40,7 @@ public class HelperTest {
         lifo.push(3);
         lifo.push(4);
         lifo.push(5);
-        helper.move(lifo,fifo);
+        Helper.move(lifo,fifo);
 
         Assertions.assertEquals(5,fifo.pop());
         Assertions.assertEquals(4,fifo.pop());
