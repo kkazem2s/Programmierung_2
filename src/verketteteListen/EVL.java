@@ -1,0 +1,146 @@
+package verketteteListen;
+
+public class EVL<T> {
+    Node head;
+    Node last;
+    int size = 0;
+
+    private class Node {
+        T data;
+        Node next;
+
+        Node (T o) {
+            data = o;
+        }
+    }
+    public void addFirst(T e) {
+        Node n = new Node(e);
+        if (head == null) {
+            last = n;
+        } else {
+            n.next = head;
+        }
+        head = n;
+        size++;
+    }
+    public T removeFirst() {
+        if (size != 0) {
+            T data = head.data;
+            head = head.next;
+            size--;
+            return data;
+        }
+        return null;
+    }
+    public void addLast(T e) {
+        Node n = new Node(e);
+        if (last == null) {
+            head = n;
+        } else {
+            Node tmp = head;
+            while (tmp.next != null) {
+                tmp = tmp.next;
+            }
+            tmp.next = n;
+        }
+        last = n;
+        size++;
+    }
+    public T removeLast() {
+        if (size <= 0) {
+            return null;
+        }
+        if (size == 1) {
+            T data = head.data;
+            head = null;
+            size--;
+            return data;
+        } else {
+            Node tmp = head;
+            while (tmp.next.next != null) {
+                tmp = tmp.next;
+            }
+            T data = tmp.next.data;
+            tmp.next = null;
+            size--;
+            return data;
+        }
+    }
+    public void add(int pos, T e) {
+        Node n = new Node(e);
+        Node tmp = head;
+        while (pos-1 > 0) {
+            tmp = tmp.next;
+            pos--;
+        }
+        n.next = tmp.next;
+        tmp.next = n;
+    }
+    public T remove(int pos) {
+        Node tmp = head;
+        while (pos-1 > 0) {
+            tmp = tmp.next;
+            pos--;
+        }
+        T value = tmp.next.next.data;
+        tmp.next = tmp.next.next;
+        return value;
+    }
+    public boolean contains(T e) {
+        Node tmp = head;
+        while (tmp.next != null) {
+            if (tmp.data.equals(e) || tmp.next.data.equals(e)) {
+                return true;
+            }
+            tmp = tmp.next;
+        }
+        return false;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public String toString() {
+        String erg = "[";
+        Node tmp = head;
+        while (tmp.next != null) {
+            erg += tmp.data + ",";
+            tmp = tmp.next;
+        }
+        erg += tmp.data + "]";
+        return erg;
+    }
+
+    public EVL<T> zip(EVL<T> other) {
+        EVL<T> zipped = new EVL<>();
+        Node thisPointer = this.head;
+        Node otherPointer = other.head;
+        int count = 0;
+
+        while (thisPointer != null & otherPointer != null) {
+            if (count % 2 == 0) {
+                zipped.addLast(thisPointer.data);
+                thisPointer = thisPointer.next;
+            } else {
+                zipped.addLast(otherPointer.data);
+                otherPointer = otherPointer.next;
+            }
+            count++;
+        }
+        if (thisPointer == null) {
+            while (otherPointer != null) {
+                zipped.addLast(otherPointer.data);
+                otherPointer = otherPointer.next;
+            }
+        } else {
+            while (thisPointer != null) {
+                zipped.addLast(thisPointer.data);
+                thisPointer = thisPointer.next;
+            }
+        }
+        // FOR TESTING PURPOSES
+        System.out.println(zipped.toString());
+        return zipped;
+    }
+}
