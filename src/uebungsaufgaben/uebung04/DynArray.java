@@ -1,7 +1,5 @@
 package uebungsaufgaben.uebung04;
 
-import java.util.Arrays;
-
 @SuppressWarnings("unchecked")
 public class DynArray<T> {
     private T[] dynArray;
@@ -31,7 +29,7 @@ public class DynArray<T> {
 
     public T removeFirst() {
         if (size == 0) {
-            throw new IndexOutOfBoundsException("Cannot remove from Empty Array");
+            throw new IndexOutOfBoundsException();
         } else {
             T[] dynArray = (T[]) new Object[this.dynArray.length];
             T tmp = this.dynArray[0];
@@ -47,7 +45,7 @@ public class DynArray<T> {
 
     public T removeLast() {
         if (size == 0) {
-            throw new IndexOutOfBoundsException("Cannot remove from Empty Array");
+            throw new IndexOutOfBoundsException();
         } else {
             T[] dynArray = (T[]) new Object[this.dynArray.length];
             T tmp = this.dynArray[this.dynArray.length-1];
