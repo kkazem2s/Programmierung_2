@@ -13,8 +13,8 @@ public class Timetest {
         for(int i = 0; i < 100; i++) {
             long f = fifoComplexity();
             long evl = evlComplexity();
-            System.out.println("Fifo: " + f);
-            System.out.println("EVL: " + evl);
+            System.out.println("Fifo: " + f + "ms");
+            System.out.println("EVL: " + evl + "ms");
             System.out.println("---------------------------");
 
             if (f < evl) {
