@@ -25,7 +25,7 @@ public class DynArray<T> {
 
     public void addLast(T e) {
         check();
-        this.dynArray[size-1] = e;
+        this.dynArray[size] = e;
         size++;
     }
 
@@ -63,7 +63,7 @@ public class DynArray<T> {
 
     public T get(int pos) {
         pos -= 1;
-        if (pos < 0 || pos >= size-1) {
+        if (pos < 0 || pos > size-1) {
             throw new IndexOutOfBoundsException();
         } else {
             return dynArray[pos];
@@ -71,7 +71,8 @@ public class DynArray<T> {
     }
 
     public T set(int pos, T e) {
-        if (pos < 0 || pos >= size-1) {
+        pos -= 1;
+        if (pos < 0 || pos > size-1) {
             throw new IndexOutOfBoundsException();
         } else {
             T tmp = dynArray[pos];
@@ -111,11 +112,13 @@ public class DynArray<T> {
     public int size() {
         return size;
     }
-    public int getL() {
-        return dynArray.length;
-    }
 
     public String toString() {
-        return Arrays.toString(this.dynArray);
+        String erg = "[";
+        for (int i = 0; i < size-1; i++) {
+            erg += dynArray[i].toString() + ",";
+        }
+        erg += dynArray[size-1] + "]";
+        return erg;
     }
 }
