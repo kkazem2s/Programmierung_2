@@ -36,4 +36,5 @@ public class PaarTest {
     public void toStringTest() {
         Assertions.assertEquals("(1,Aufgabe)", integerStringPaar.toString());
     }
+
 }

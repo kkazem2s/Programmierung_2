@@ -1,6 +1,11 @@
 package uebungsaufgaben.uebung03;
 
 public class FifomitEVL<T> implements FifoIF<T> {
+    /*
+        Wo könnte es Unterschiede geben? Was sind eventuell Vor- und Nachteile?
+
+
+     */
     private final EVL<T> fifo;
 
     public FifomitEVL() {

@@ -3,7 +3,7 @@ package uebungsaufgaben.uebung03;
 import uebungsaufgaben.uebung00.Fifo;
 
 public class Timetest {
-    static Fifo fifo = new Fifo(10000);
+    static Fifo<Integer> fifo = new Fifo<>(10000);
     static FifomitEVL<Integer> evl = new FifomitEVL<>();
 
     public static void main(String [] args) {

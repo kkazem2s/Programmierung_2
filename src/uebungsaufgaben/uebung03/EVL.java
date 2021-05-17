@@ -137,8 +137,6 @@ public class EVL<T> {
                 thisPointer = thisPointer.next;
             }
         }
-        // FOR TESTING PURPOSES
-        System.out.println(zipped.toString());
         return zipped;
     }
 }
