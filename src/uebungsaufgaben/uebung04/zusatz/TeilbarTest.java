@@ -12,4 +12,5 @@ public class TeilbarTest {
         Assertions.assertEquals(2520,teilbar(10));
         Assertions.assertEquals(232792560,teilbar(20));
     }
+
 }
