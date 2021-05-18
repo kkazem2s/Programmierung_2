@@ -56,7 +56,7 @@ public class Ringpuffer<T> {
         }
     }
     public T removeLast() {
-        if (size == 0 ) {
+        if (size == 0) {
             throw new IndexOutOfBoundsException();
         } else {
             T tmp = array[(head + size - 1) % array.length];
