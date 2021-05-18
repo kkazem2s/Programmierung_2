@@ -48,7 +48,7 @@ public class DynArray<T> {
             throw new IndexOutOfBoundsException();
         } else {
             T[] dynArray = (T[]) new Object[this.dynArray.length];
-            T tmp = this.dynArray[this.dynArray.length-1];
+            T tmp = this.dynArray[size-1];
             for(int i = 0; i < this.dynArray.length-1; i++) {
                 dynArray[i] = this.dynArray[i];
             }
