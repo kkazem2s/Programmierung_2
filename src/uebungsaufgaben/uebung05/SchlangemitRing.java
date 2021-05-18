@@ -3,7 +3,7 @@ package uebungsaufgaben.uebung05;
 import uebungsaufgaben.uebung04.Ringpuffer;
 
 public class SchlangemitRing<T> implements Schlange<T> {
-    private Ringpuffer<T> ringpuffer;
+    private final Ringpuffer<T> ringpuffer;
 
     public SchlangemitRing(int capacity) {
         ringpuffer = new Ringpuffer<>(capacity);
