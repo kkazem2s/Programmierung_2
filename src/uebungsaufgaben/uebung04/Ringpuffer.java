@@ -1,60 +1,100 @@
 package uebungsaufgaben.uebung04;
 
-import java.util.Arrays;
-
 @SuppressWarnings("unchecked")
 public class Ringpuffer<T> {
     private final T[] array;
     private int head = -1;
-    private int size;
+    private int size = 0;
 
     public Ringpuffer(int capacity) {
         if (capacity <= 0) {
             throw new IndexOutOfBoundsException();
         } else {
             array = (T[]) new Object[capacity];
-            size = 0;
         }
     }
 
     public void addFirst(T e) {
-        if (head == -1) {
-            array[0] = e;
-            head = 0;
+        if (size == array.length) {
+            throw new IndexOutOfBoundsException();
         } else {
-            for(int i = head; i < size; i++) {
-
+            if (head == -1) {
+                head = 0;
+            } else {
+                for (int i = size; i > head && i > 0; i--) {
+                    array[(head + i) % array.length] = array[((head + i) % array.length) - 1];
+                }
             }
+            array[head] = e;
+            size++;
         }
-        size++;
     }
     public void addLast(T e) {
-        if (array[array.length-1] != null) {
-            for (int i = 1; i < array.length; i++) {
-                array[i-1] = array[i];
+        if (size == array.length) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            if (head == -1) {
+                head = 0;
+                array[head] = e;
+            } else {
+                array[(head + size) % array.length] = e;
             }
+            size++;
         }
-        array[array.length-1] = e;
-        size++;
     }
 
     public T removeFirst() {
-        T tmp = array[0];
-        array[0] = null;
-        size--;
-        return tmp;
+        if (size == 0) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            T tmp = array[head];
+            array[head] = null;
+            size--;
+            head++;
+            head = head % array.length;
+            return tmp;
+        }
     }
     public T removeLast() {
-        T tmp = array[array.length-1];
-        array[array.length-1] = null;
-        size--;
-        return tmp;
+        if (size == 0 ) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            T tmp = array[(head + size - 1) % array.length];
+            array[(head + size - 1) % array.length] = null;
+            size--;
+            return tmp;
+        }
+    }
+
+    public T get(int pos) {
+        if (pos < 0 || pos > array.length) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            return array[(head + pos) % array.length];
+        }
+    }
+    public void set(int pos, T e) {
+        if (pos < 0 || pos > array.length) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            array[(head + pos) % array.length] = e;
+        }
     }
 
     public int size() {
-        return size();
+        return size;
     }
     public String toString() {
-        return Arrays.toString(array);
+        if (size <= 0) {
+            return "[ ]";
+        } else {
+            String erg = "[";
+
+            for (int i = head; i < size-1; i++) {
+                erg += array[i].toString() + ", ";
+            }
+            erg += array[size-1].toString() + "]";
+            return erg;
+        }
     }
 }
