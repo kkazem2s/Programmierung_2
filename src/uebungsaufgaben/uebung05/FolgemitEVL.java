@@ -5,7 +5,6 @@ import uebungsaufgaben.uebung03.EVL;
 public class FolgemitEVL<T> implements Folge<T> {
     private EVL<T> evl;
 
-
     @Override
     public void set(int pos, T e) throws IndexOutOfBoundsException {
         evl.add(pos, e);
