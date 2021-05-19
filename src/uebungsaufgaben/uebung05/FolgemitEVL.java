@@ -1,32 +1,29 @@
 package uebungsaufgaben.uebung05;
 
-import uebungsaufgaben.uebung04.Ringpuffer;
+import uebungsaufgaben.uebung03.EVL;
 
-public class FolgemitRing<T> implements Folge<T> {
-    private Ringpuffer<T> ringpuffer;
+public class FolgemitEVL<T> implements Folge<T> {
+    private EVL<T> evl;
 
-    public FolgemitRing(int capacity) {
-        ringpuffer = new Ringpuffer<>(capacity);
-    }
 
     @Override
     public void set(int pos, T e) throws IndexOutOfBoundsException {
-        ringpuffer.set(pos, e);
+        evl.add(pos, e);
     }
 
     @Override
     public T get(int index) throws IndexOutOfBoundsException {
-        return ringpuffer.get(index);
+        return evl.remove(index);
     }
 
     @Override
     public int size() {
-        return ringpuffer.size();
+        return evl.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return ringpuffer.size() == 0 || ringpuffer.size() == -1;
+        return evl.size() == 0;
     }
 
     @Override
