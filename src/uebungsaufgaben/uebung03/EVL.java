@@ -67,25 +67,48 @@ public class EVL<T> {
         }
     }
     public void add(int pos, T e) {
-        Node n = new Node(e);
-        Node tmp = head;
-        while (pos-1 > 0) {
-            tmp = tmp.next;
-            pos--;
+        if (pos < 0) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            if (pos > size) {
+                addLast(e);
+            } else {
+                if (pos == 0) {
+                    addFirst(e);
+                } else {
+                    Node n = new Node(e);
+                    Node tmp = head;
+                    while (pos-1 > 0) {
+                        tmp = tmp.next;
+                        pos--;
+                    }
+                    n.next = tmp.next;
+                    tmp.next = n;
+                    size++;
+                }
+            }
         }
-        n.next = tmp.next;
-        tmp.next = n;
-        size++;
     }
     public T remove(int pos) {
-        Node tmp = head;
-        while (pos-1 > 0) {
-            tmp = tmp.next;
-            pos--;
+        if (pos < 0 || pos > size) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            Node tmp = head;
+            T value;
+            if (pos == 0){
+                value = head.data;
+                head = head.next;
+            } else {
+                while (pos-1 > 0) {
+                    tmp = tmp.next;
+                    pos--;
+                }
+                value = tmp.next.data;
+                tmp.next = tmp.next.next;
+            }
+            size--;
+            return value;
         }
-        T value = tmp.next.next.data;
-        tmp.next = tmp.next.next;
-        return value;
     }
     public boolean contains(T e) {
         Node tmp = head;

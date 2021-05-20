@@ -1,6 +1,6 @@
 package uebungsaufgaben.uebung05;
 
-public class Timetest {
+public class TimetestSchlange {
     static SchlangemitRing<Integer> ring = new SchlangemitRing<>(10000);
     static SchlangemitDynArray<Integer> dynArray = new SchlangemitDynArray<>();
 

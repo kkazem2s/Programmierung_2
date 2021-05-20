@@ -114,7 +114,7 @@ public class DynArray<T> {
     public String toString() {
         String erg = "[";
         for (int i = 0; i < size-1; i++) {
-            erg += dynArray[i].toString() + ",";
+            erg += dynArray[i] + ",";
         }
         erg += dynArray[size-1] + "]";
         return erg;

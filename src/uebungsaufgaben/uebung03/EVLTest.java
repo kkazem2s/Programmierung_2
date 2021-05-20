@@ -55,6 +55,28 @@ public class EVLTest {
         integerEVL.removeLast();
         Assertions.assertEquals("[2,3]",integerEVL.toString());
     }
+
+
+    @Test
+    public void addTest() {
+        integerEVL.add(0, 1);
+        integerEVL.add(42, 2);
+        integerEVL.add(1, 42);
+        Assertions.assertEquals("[1,42,2]", integerEVL.toString());
+    }
+
+    @Test
+    public void removeTest() {
+        integerEVL.addFirst(2);
+        integerEVL.addFirst(1);
+        integerEVL.addLast(3);
+        integerEVL.addLast(4);
+        Assertions.assertEquals(1, integerEVL.remove(0));
+        Assertions.assertEquals(2, integerEVL.remove(0));
+        Assertions.assertEquals(4, integerEVL.remove(1));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> integerEVL.remove(42));
+    }
+
     @Test
     public void zipWithEqualLengthTest() {
         integerEVL.addFirst(5);

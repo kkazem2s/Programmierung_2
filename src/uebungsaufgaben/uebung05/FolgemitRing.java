@@ -2,31 +2,49 @@ package uebungsaufgaben.uebung05;
 
 import uebungsaufgaben.uebung04.Ringpuffer;
 
+import java.util.NoSuchElementException;
+
 public class FolgemitRing<T> implements Folge<T> {
     private Ringpuffer<T> ringpuffer;
+    private int size;
 
     public FolgemitRing(int capacity) {
         ringpuffer = new Ringpuffer<>(capacity);
+        size = 0;
     }
 
     @Override
-    public void set(int pos, T e) throws IndexOutOfBoundsException {
-        ringpuffer.set(pos, e);
+    public void set(int pos, T e) throws NoSuchElementException {
+        if (pos < 0) {
+            throw new NoSuchElementException();
+        } else {
+            if (pos > ringpuffer.size()) {
+                ringpuffer.addLast(e);
+            } else {
+                ringpuffer.set(pos,e);
+            }
+            size++;
+        }
     }
 
     @Override
-    public T get(int index) throws IndexOutOfBoundsException {
-        return ringpuffer.get(index);
+    public T get(int index) throws NoSuchElementException {
+        if (index < 0 || index > size) {
+            throw new NoSuchElementException();
+        } else {
+            size--;
+            return ringpuffer.get(index);
+        }
     }
 
     @Override
     public int size() {
-        return ringpuffer.size();
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return ringpuffer.size() == 0 || ringpuffer.size() == -1;
+        return size == 0;
     }
 
     @Override
@@ -37,5 +55,9 @@ public class FolgemitRing<T> implements Folge<T> {
     @Override
     public T remove() throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
+    }
+
+    public String toString() {
+        return ringpuffer.toString();
     }
 }

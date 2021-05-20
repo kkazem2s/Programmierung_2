@@ -72,14 +72,5 @@ public class SchlangemitDynArrayTest {
         Assertions.assertEquals("World", stringQueue.remove());
         Assertions.assertEquals("!", stringQueue.remove());
     }
-
-    /*
-        insert x
-        remove x
-        size
-        first
-        isEmpty x
-     */
-
 }
 
