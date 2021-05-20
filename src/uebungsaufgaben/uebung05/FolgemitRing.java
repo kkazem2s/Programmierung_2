@@ -6,11 +6,10 @@ import java.util.NoSuchElementException;
 
 public class FolgemitRing<T> implements Folge<T> {
     private Ringpuffer<T> ringpuffer;
-    private int size;
+    int size = 0;
 
     public FolgemitRing(int capacity) {
         ringpuffer = new Ringpuffer<>(capacity);
-        size = 0;
     }
 
     @Override
@@ -18,7 +17,7 @@ public class FolgemitRing<T> implements Folge<T> {
         if (pos < 0) {
             throw new NoSuchElementException();
         } else {
-            if (pos > ringpuffer.size()) {
+            if (pos >= ringpuffer.size()) {
                 ringpuffer.addLast(e);
             } else {
                 ringpuffer.set(pos,e);
@@ -39,12 +38,12 @@ public class FolgemitRing<T> implements Folge<T> {
 
     @Override
     public int size() {
-        return size;
+        return ringpuffer.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return ringpuffer.size() == 0;
     }
 
     @Override

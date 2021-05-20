@@ -36,14 +36,30 @@ public class FolgemitRingTest {
     }
 
     @Test
-    public void addAndGetTest() {
+    public void setTest() {
+        Assertions.assertThrows(NoSuchElementException.class, () -> folge.set(-1, 10));
+
         folge.set(0,1);
+        folge.set(20,2);
+        folge.set(0, 20);
+        folge.set(3,4);
+        folge.set(2,42);
+
+        Assertions.assertEquals("[20,2,42]", folge.toString());
+    }
+
+    @Test
+    public void addAndGetTest() {
+        folge.set(0,0);
+        System.out.println(folge);
+        folge.set(1,1);
         System.out.println(folge);
         folge.set(2,2);
-        folge.set(3,3);
-        folge.set(4,4);
         System.out.println(folge);
-        Assertions.assertEquals(3, folge.get(2));
+        folge.set(3,3);
+        System.out.println(folge);
+        Assertions.assertEquals(0, folge.get(0));
+        System.out.println(folge);
         Assertions.assertEquals(1, folge.get(0));
         System.out.println(folge);
     }

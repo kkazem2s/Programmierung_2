@@ -49,8 +49,8 @@ public class Ringpuffer<T> {
         } else {
             T tmp = array[head];
             array[head] = null;
-            size--;
             head++;
+            size--;
             head = head % array.length;
             return tmp;
         }
@@ -70,23 +70,28 @@ public class Ringpuffer<T> {
         if (pos < 0 || pos > array.length) {
             throw new IndexOutOfBoundsException();
         } else {
-            T tmp = array[(head + pos) % array.length];
-            for (int i = pos; i < size-1; i++) {
-                array[i] = array[i+1];
+            if (pos == 0) {
+                T tmp = array[head];
+                array[head] = null;
+                head++;
+                head = head % array.length;
+                return tmp;
+            } else {
+                T tmp = array[(head + pos) % array.length];
+                for (int i = pos; i < size-1; i++) {
+                    array[i] = array[i+1];
+                }
+                size--;
+                return tmp;
             }
-            size--;
-            return tmp;
         }
     }
+
     public void set(int pos, T e) {
         if (pos < 0 || pos > array.length) {
             throw new IndexOutOfBoundsException();
         } else {
-            if (pos == 0) {
-                addFirst(e);
-            } else {
-                array[(head + pos) % array.length] = e;
-            }
+            array[(head + pos) % array.length] = e;
         }
     }
 
@@ -99,7 +104,7 @@ public class Ringpuffer<T> {
         } else {
             String erg = "[";
             for (int i = head; i < size-1; i++) {
-                erg += array[i] + ", ";
+                erg += array[i] + ",";
             }
             erg += array[size-1] + "]";
             return erg;

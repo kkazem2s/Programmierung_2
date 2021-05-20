@@ -35,7 +35,7 @@ public class RingpufferTest {
 
         Assertions.assertEquals(2,integerRingpuffer.size());
         Assertions.assertEquals(1, integerRingpuffer.get(0));
-        Assertions.assertEquals(2, integerRingpuffer.get(1));
+        Assertions.assertEquals(2, integerRingpuffer.get(0));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class RingpufferTest {
         integerRingpuffer.set(1,20);
 
         Assertions.assertEquals(10, integerRingpuffer.get(0));
-        Assertions.assertEquals(20, integerRingpuffer.get(1));
+        Assertions.assertEquals(20, integerRingpuffer.get(0));
     }
     @Test
     public void removeTest() {
@@ -87,7 +87,7 @@ public class RingpufferTest {
         integerRingpuffer.addFirst(2);
         integerRingpuffer.addFirst(1);
 
-        Assertions.assertEquals("[1, 2, 3]", integerRingpuffer.toString());
+        Assertions.assertEquals("[1,2,3]", integerRingpuffer.toString());
         Assertions.assertEquals("[ ]", stringRingpuffer.toString());
     }
 
