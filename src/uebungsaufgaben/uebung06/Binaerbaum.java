@@ -87,7 +87,7 @@ public class Binaerbaum<T> {
     }
 
     /* Bei dieser Methode wird der Baum in preorder traversiert und die entsprechenden Inhalte
-       auf dem Bildschirm ausgegeben. */
+       auf dem Bildschirm ausgegeben. [Wurzel - Links - Rechts] */
     public String preorder() {
         return preorder(wurzel);
     }
@@ -109,7 +109,7 @@ public class Binaerbaum<T> {
     }
 
     /* Bei dieser Methode wird der Baum in inorder traversiert und die entsprechenden Inhalte
-       auf dem Bildschirm ausgegeben. */
+       auf dem Bildschirm ausgegeben. [Links - Wurzel - Rechts] */
     public String inorder() {
         return inorder(wurzel);
     }
@@ -130,7 +130,7 @@ public class Binaerbaum<T> {
         return "";
     }
     /* Bei dieser Methode wird der Baum in postorder traversiert und die entsprechenden Inhalte
-       auf dem Bildschirm ausgegeben. */
+       auf dem Bildschirm ausgegeben. [Links - Rechts - Wurzel] */
     public String postorder() {
         return postorder(wurzel);
     }
