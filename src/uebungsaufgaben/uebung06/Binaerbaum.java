@@ -88,8 +88,8 @@ public class Binaerbaum<T> {
     }
 
     // private Klasse zur Instanziierung eines Knoten
-    public class BaumEl {
-        private T data;
+    private class BaumEl {
+        private final T data;
         private BaumEl links, rechts = null;
 
         public BaumEl(T data) {
