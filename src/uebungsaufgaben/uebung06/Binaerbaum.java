@@ -1,7 +1,7 @@
 package uebungsaufgaben.uebung06;
 
 public class Binaerbaum<T> {
-    private final BaumEl wurzel;
+    protected final BaumEl wurzel;
 
     // Der Konstruktor erzeugt einen leeren Baum.
     public Binaerbaum() {
@@ -131,10 +131,10 @@ public class Binaerbaum<T> {
         return "";
     }
 
-    // private Klasse zur Instanziierung eines Knoten
-    private class BaumEl {
-        private final T data;
-        private BaumEl links, rechts = null;
+    // Klasse zur Instanziierung eines Knoten
+    protected class BaumEl {
+        protected T data;
+        protected BaumEl links, rechts = null;
 
         public BaumEl(T data) {
             this.data = data;
