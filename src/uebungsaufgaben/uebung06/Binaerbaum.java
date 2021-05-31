@@ -3,23 +3,23 @@ package uebungsaufgaben.uebung06;
 import java.util.Random;
 
 public class Binaerbaum<T> {
-    private BaumEl wurzel;
-    private Binaerbaum<T> links;
-    private Binaerbaum<T> rechts;
+    private final BaumEl wurzel;
 
     // Der Konstruktor erzeugt einen leeren Baum.
     public Binaerbaum() {
         wurzel = null;
-        links = null;
-        rechts = null;
     }
 
     /* Der Konstruktor nimmt ein T an das als Inhalt der Wurzel gespeichert wird und außerdem
        zwei weitere Referenzobjekte vom Typ Binaerbaum, eins für links und eins für rechts. */
     public Binaerbaum(T wurzel, Binaerbaum<T> links, Binaerbaum<T> rechts) {
         this.wurzel = new BaumEl(wurzel);
-        this.wurzel.links = links.wurzel;
-        this.wurzel.rechts = rechts.wurzel;
+        if (links != null) {
+            this.wurzel.links = links.wurzel;
+        }
+        if(rechts != null) {
+            this.wurzel.rechts = rechts.wurzel;
+        }
     }
 
     // Codebeispiel aus der Vorlesung; Fügt Wert an eine zufällige Stelle im Baum
@@ -47,7 +47,7 @@ public class Binaerbaum<T> {
 
     // Die Methode berechnet die Höhe des Baumes rekursiv und gibt den Wert zurück.
     public int hoehe() {
-        return 1 + hoehe(wurzel);
+        return hoehe(wurzel);
     }
 
     private int hoehe(BaumEl e) {
@@ -77,21 +77,20 @@ public class Binaerbaum<T> {
 
     // Die Methode liefert eine Darstellung des Baums als Zeichenkette mit Hilfe von Rekursion.
     public String toString() {
-        return "<" + toString(wurzel) + ">";
+        return toString(wurzel);
     }
     private String toString(BaumEl e) {
-        if (e.data == null) {
+        if (e == null) {
             return "";
         } else {
-            return "<" + toString(e.links) + ">" + "<" + e.data.toString() + ">" + "<" + toString(e.rechts) + ">";
+            return "<" + toString(e.links) + ">" + "<" + e.data + ">" + "<" + toString(e.rechts) + ">";
         }
     }
 
     // private Klasse zur Instanziierung eines Knoten
-    private class BaumEl {
+    public class BaumEl {
         private T data;
-        private BaumEl links;
-        private BaumEl rechts;
+        private BaumEl links, rechts = null;
 
         public BaumEl(T data) {
             this.data = data;
