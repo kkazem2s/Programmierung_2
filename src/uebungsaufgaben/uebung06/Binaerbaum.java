@@ -49,7 +49,6 @@ public class Binaerbaum<T> {
     public int hoehe() {
         return hoehe(wurzel);
     }
-
     private int hoehe(BaumEl e) {
         if (e != null) {
             int hoeheLinks = hoehe(e.links);
@@ -85,6 +84,71 @@ public class Binaerbaum<T> {
         } else {
             return "<" + toString(e.links) + ">" + "<" + e.data + ">" + "<" + toString(e.rechts) + ">";
         }
+    }
+
+    /* Bei dieser Methode wird der Baum in preorder traversiert und die entsprechenden Inhalte
+       auf dem Bildschirm ausgegeben. */
+    public String preorder() {
+        return preorder(wurzel);
+    }
+    private String preorder(BaumEl e) {
+        if (e != null) {
+            String s = "";
+            if (e.data != null) {
+                s += e.data + " ";
+            }
+            if (e.links != null) {
+                s += preorder(e.links);
+            }
+            if (e.rechts != null) {
+                s += preorder(e.rechts);
+            }
+            return s;
+        }
+        return "";
+    }
+
+    /* Bei dieser Methode wird der Baum in inorder traversiert und die entsprechenden Inhalte
+       auf dem Bildschirm ausgegeben. */
+    public String inorder() {
+        return inorder(wurzel);
+    }
+    private String inorder(BaumEl e) {
+        if (e != null) {
+            String s = "";
+            if (e.links != null) {
+                s += inorder(e.links);
+            }
+            if (e.data != null) {
+                s += e.data + " ";
+            }
+            if (e.rechts != null) {
+                s += inorder(e.rechts);
+            }
+            return s;
+        }
+        return "";
+    }
+    /* Bei dieser Methode wird der Baum in postorder traversiert und die entsprechenden Inhalte
+       auf dem Bildschirm ausgegeben. */
+    public String postorder() {
+        return postorder(wurzel);
+    }
+    private String postorder(BaumEl e) {
+        if (e != null) {
+            String s = "";
+            if (e.links != null) {
+                s += postorder(e.links);
+            }
+            if (e.rechts != null) {
+                s += postorder(e.rechts);
+            }
+            if (e.data != null) {
+                s += e.data + " ";
+            }
+            return s;
+        }
+        return "";
     }
 
     // private Klasse zur Instanziierung eines Knoten
