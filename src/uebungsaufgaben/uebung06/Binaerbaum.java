@@ -1,7 +1,5 @@
 package uebungsaufgaben.uebung06;
 
-import java.util.Random;
-
 public class Binaerbaum<T> {
     private final BaumEl wurzel;
 
@@ -19,24 +17,6 @@ public class Binaerbaum<T> {
         }
         if(rechts != null) {
             this.wurzel.rechts = rechts.wurzel;
-        }
-    }
-
-    // Codebeispiel aus der Vorlesung; Fügt Wert an eine zufällige Stelle im Baum
-    public void add(BaumEl c, BaumEl k) {
-        Random rand = new Random();
-        if (rand.nextBoolean()) {
-            if (c.links == null) {
-                c.links = k;
-            } else {
-                add(c.links, k);
-            }
-        } else {
-            if (c.rechts == null) {
-                c.rechts = k;
-            } else {
-                add(c.rechts, k);
-            }
         }
     }
 
