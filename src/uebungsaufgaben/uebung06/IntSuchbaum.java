@@ -30,7 +30,7 @@ public class IntSuchbaum extends Binaerbaum<Integer> {
             }
             if (i > e.data) {
                 if (e.rechts == null) {
-                    e.rechts = new BaumEl(i);;
+                    e.rechts = new BaumEl(i);
                 } else {
                     insert(i, e.rechts);
                 }
@@ -62,21 +62,46 @@ public class IntSuchbaum extends Binaerbaum<Integer> {
 
     /* Der entsprechende Wert wird im Baum gelöscht. Falls er nicht vorhanden ist
        wird eine NoSuchElementException geworfen. */
-    public void remove(int i) throws NoSuchElementException {
-        if (contains(i)) {
-            remove(i, wurzel);
+    public BaumEl remove(int i) throws NoSuchElementException {
+        if (!contains(i)) {
+            throw new NoSuchElementException();
         }
-        throw new NoSuchElementException();
+        return remove(i, wurzel);
     }
-    private void remove(int i, BaumEl e) {
-        if (e.data == i) {
-            // TODO
+    /* Der Suchbaum wird rekursiv durchlaufen und prüft wieviele Nachfolger der zu
+       löschende Knoten besitzt. Dementsprechen wird entweder der Wert lediglich
+       gelöscht, der Nachfolger "hochgezogen" oder der kleinste Wert des rechten
+       Teilbaumes als Ersatz verschoben. */
+    private BaumEl remove(int i, BaumEl e) {
+        if (e == null) return e;
+
+        if (i < e.data) {
+            e.links = remove(i, e.links);
+        } else if (i > e.data) {
+            e.rechts = remove(i, e.rechts);
         } else {
-            if (i < e.data) {
-                remove(i, e.links);
+            if (e.links == null) {
+                return e.rechts;
+            } else if (e.rechts == null) {
+                return e.links;
             } else {
-                remove(i, e.rechts);
+                e.data = getNachfolger(e.rechts);
+                e.rechts = remove(e.data, e.rechts);
             }
         }
+        return e;
+    }
+
+    /* Damit keine Löcher entstehen, müssen die Werte aus den unteren Teilbäumen hochgezogen werden,
+       dabei dürfen die Regeln des Suchbaums nicht verletzt werden. Dafür wird aus dem rechten Teilbaum
+       der kleinste Wert herausgesucht. */
+    private int getNachfolger(BaumEl e) {
+        int val = e.data;
+
+        while (e.links != null) {
+            val = e.links.data;
+            e = e.links;
+        }
+        return val;
     }
 }
