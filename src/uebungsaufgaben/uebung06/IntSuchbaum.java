@@ -3,7 +3,9 @@ package uebungsaufgaben.uebung06;
 import java.util.NoSuchElementException;
 
 public class IntSuchbaum extends Binaerbaum<Integer> {
-
+/* Die Nutzung der compareTo Methode des Interfaces Comparable wird ermöglich durch die bereits
+   vorhandene Implementierung des Datentypes 'Integer', welcher in dieser Klasse benutzt wird.
+ */
     public IntSuchbaum() {
         super();
     }
@@ -18,17 +20,17 @@ public class IntSuchbaum extends Binaerbaum<Integer> {
     }
     private void insert(int i, BaumEl e) {
         if (e != null) {
-            if (i == e.data || i < 1) {
+            if (e.data.compareTo(i) == 0 || i < 1) {
                 throw new IllegalArgumentException();
             }
-            if (i < e.data) {
+            if (e.data.compareTo(i) < 0) {
                 if (e.links == null) {
                     e.links = new BaumEl(i);
                 } else {
                     insert(i, e.links);
                 }
             }
-            if (i > e.data) {
+            if (e.data.compareTo(i) > 0) {
                 if (e.rechts == null) {
                     e.rechts = new BaumEl(i);
                 } else {
@@ -49,11 +51,11 @@ public class IntSuchbaum extends Binaerbaum<Integer> {
             return false;
         }
         // Check if value is same
-        if (e.data == i) {
+        if (e.data.compareTo(i) == 0) {
             return true;
         }
         // Go next node
-        if (i < e.data) {
+        if (e.data.compareTo(i) < 0) {
             return contains(i, e.links);
         } else {
             return contains(i, e.rechts);
@@ -73,11 +75,12 @@ public class IntSuchbaum extends Binaerbaum<Integer> {
        gelöscht, der Nachfolger "hochgezogen" oder der kleinste Wert des rechten
        Teilbaumes als Ersatz verschoben. */
     private BaumEl remove(int i, BaumEl e) {
-        if (e == null) return e;
-
-        if (i < e.data) {
+        if (e == null) {
+            return null;
+        }
+        if (e.data.compareTo(i) < 0) {
             e.links = remove(i, e.links);
-        } else if (i > e.data) {
+        } else if (e.data.compareTo(i) > 0) {
             e.rechts = remove(i, e.rechts);
         } else {
             if (e.links == null) {
