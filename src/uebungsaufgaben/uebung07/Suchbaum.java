@@ -80,10 +80,28 @@ public class Suchbaum<T extends Comparable<T>> extends Binaerbaum<T> {
         }
         if (comparator != null) {
             if (comparator.compare(element, e.data) == 0) {
-                if (comparator.compare(element, p.links.data) == 0) {
-                    p.links = null;
+                if (e.links == null && e.rechts == null) {
+                    if (comparator.compare(element, p.links.data) == 0) {
+                        p.links = null;
+                    } else {
+                        p.rechts = null;
+                    }
+                } else if (e.links == null) {
+                    if (comparator.compare(element, p.links.data) == 0) {
+                        p.links = e.rechts;
+                    } else {
+                        p.rechts = e.rechts;
+                    }
+                } else if (e.rechts == null) {
+                    if (comparator.compare(element, p.links.data) == 0) {
+                        p.links = e.links;
+                    } else {
+                        p.links = e.links;
+                    }
                 } else {
-                    p.rechts = null;
+                    T val = getNachfolger(e.links);
+                    remove(val);
+                    e.data = val;
                 }
             } else {
                 if (comparator.compare(element, e.data) < 0) {
@@ -94,10 +112,28 @@ public class Suchbaum<T extends Comparable<T>> extends Binaerbaum<T> {
             }
         } else {
             if (element.compareTo(e.data) == 0) {
-                if (element.compareTo(p.links.data) == 0) {
-                    p.links = null;
+                if (e.links == null && e.rechts == null) {
+                    if (element.compareTo(p.links.data) == 0) {
+                        p.links = null;
+                    } else {
+                        p.rechts = null;
+                    }
+                } else if (e.links == null) {
+                    if (element.compareTo(p.links.data) == 0) {
+                        p.links = e.rechts;
+                    } else {
+                        p.rechts = e.rechts;
+                    }
+                } else if (e.rechts == null) {
+                    if (element.compareTo(p.links.data) == 0) {
+                        p.links = e.links;
+                    } else {
+                        p.links = e.links;
+                    }
                 } else {
-                    p.rechts = null;
+                    T val = getNachfolger(e.links);
+                    remove(val);
+                    e.data = val;
                 }
             } else {
                 if (element.compareTo(e.data) < 0) {
