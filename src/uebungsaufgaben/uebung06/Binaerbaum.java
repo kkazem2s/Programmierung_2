@@ -132,9 +132,9 @@ public class Binaerbaum<T> {
     }
 
     // Klasse zur Instanziierung eines Knoten
-    protected class BaumEl {
-        protected T data;
-        protected BaumEl links, rechts = null;
+    public class BaumEl {
+        public T data;
+        public BaumEl links, rechts = null;
 
         public BaumEl(T data) {
             this.data = data;
